@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<p>In the next 30 days, the upcoming flights for your airline {{airline_name}} are all here:</p>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Flight Number</th>
+	<th>Departure Airport</th>
+	<th>Departure City</th>
+	<th>Departure Time</th>
+	<th>Arrival Airport</th>
+	<th>Arrival City</th>
+	<th>Arrival Time</th>
+
+{% for line in data %}
+	<tr>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['departure_airport']}}</td>
+		<td>{{line['departure_city']}}</td>
+		<td>{{line['departure_time']}}</td>
+		<td>{{line['arrival_airport']}}</td>
+		<td>{{line['arrival_city']}}</td>
+		<td>{{line['arrival_time']}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+
+<a href="/home">Go back</a>
+
+</body>
+
+</html>

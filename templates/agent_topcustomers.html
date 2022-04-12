@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <script src="/static/echarts.min.js"></script>
+</head>
+<body>
+<p>From {{from_date1}} to {{to_date1}}, the top 5 customers based on the number of tickets bought by you are:</p>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+<table>
+	<th>customer_email</th>
+	<th>number_of_ticket</th>
+
+
+{% for line in data1 %}
+	<tr>
+		<td>{{line['customer_email']}}</td>
+		<td>{{line['number_of_tickets']}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+<p>And following is the bar chart of this:</p></br>
+<div id="main1" style="width: 600px;height:400px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main1'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'number of tickets of each top 5 customer'
+            },
+            tooltip: {},
+            legend: {
+                data:['Tickets']
+            },
+            xAxis: {
+                data: {{x_data1}}
+            },
+            yAxis: {},
+            series: [{
+                name: 'Number of tickets',
+                type: 'bar',
+                data: {{y_data1}}
+            }]
+        };
+		myChart.setOption(option);
+	</script>
+
+<p>From {{from_date2}} to {{to_date2}}, the top 5 customers based on the amount of commossion you received are:</p>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+<table>
+	<th>customer_email</th>
+	<th>amount of commission</th>
+
+
+{% for line in data2 %}
+	<tr>
+		<td>{{line['customer_email']}}</td>
+		<td>{{line['amount_of_commission']}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+<p>And following is the bar chart of this:</p></br>
+
+<div id="main2" style="width: 600px;height:400px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main2'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'amount of commission you received from top 5 customers'
+            },
+            tooltip: {},
+            legend: {
+                data:['commission']
+            },
+            xAxis: {
+                data: {{x_data2}}
+            },
+            yAxis: {},
+            series: [{
+                name: 'amount of commission',
+                type: 'bar',
+                data: {{y_data2}}
+            }]
+        };
+		myChart.setOption(option);
+	</script>
+
+<a href="/home">Go back</a>
+
+</body>
+
+</html>

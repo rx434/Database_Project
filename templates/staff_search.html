@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form action="/home/staff/searchandsee" method="POST">
+	<p>Source City:</p><input type="text" name="source_city" placeholder="source city" required/> 
+	<p>Destination City:</p><input type="text" name="destination_city" placeholder="destination city" required/>
+	<p>From:</p><input type="date" name="from_date" placeholder="date" required/>
+	<p>To:</p><input type="date" name="to_date" placeholder="date" required/>
+	<input type="submit" value = Search />
+</form>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Airline</th>
+	<th>Flight number</th>
+	<th>Departure airport</th>
+	<th>Departure city</th>
+	<th>Departure time</th>
+	<th>Arrival airport</th>
+	<th>Arrival city</th>
+	<th>Arrival time</th>
+	<th>Status</th>
+
+{% for line in data %}
+	<tr>
+		<td>{{line['airline_name']}}</td>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['departure_airport']}}</td>
+		<td>{{line['departure_city']}}</td>
+		<td>{{line['departure_time']}}</td>
+		<td>{{line['arrival_airport']}}</td>
+		<td>{{line['arrival_city']}}</td>
+		<td>{{line['arrival_time']}}</td>
+		<td>{{line['status']}}</td>
+		<td><form action="/home/staff/search/seecustomers" method="POST">
+			<input type="hidden" name="airline_name" value="{{line['airline_name']}}" /> 
+			<input type="hidden" name="flight_num" value={{line['flight_num']}} />
+			<input type="submit" value = "See All Customers">
+		</form></td>
+	</tr>
+{% endfor %}
+</table>
+
+<form action="/home/staff/searchstatus" method="POST">
+	<p>You can search the flights status for your airline {{airline_name}} here.</p>
+	<input type="text" name="flight_number" placeholder="flight number" required/>
+	<input type="submit" value = Search />
+</form>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Airline</th>
+	<th>Flight number</th>
+	<th>Status</th>
+
+{% for line in status %}
+	<tr>
+		<td>{{line['airline_name']}}</td>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['status']}}</td>
+	</tr>
+{% endfor %}
+</table>
+<a href="/home">Go back</a>
+
+</body>
+
+</html>

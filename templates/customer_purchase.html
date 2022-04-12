@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form action="/home/customer/searchtickets" method="POST">
+	<input type="text" name="source_city" placeholder="source city" required/> 
+	<input type="text" name="destination_city" placeholder="destination city" required/>
+	<input type="date" name="date" placeholder="date" required/>
+	<input type="submit" value = Search />
+</form>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Airline</th>
+	<th>Flight number</th>
+	<th>Departure airport</th>
+	<th>Departure city</th>
+	<th>Departure time</th>
+	<th>Arrival airport</th>
+	<th>Arrival city</th>
+	<th>Arrival time</th>
+	<th>Remainning tickets</th>
+
+{% for line in tickets %}
+	<tr>
+		<td>{{line['airline_name']}}</td>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['departure_airport']}}</td>
+		<td>{{line['departure_city']}}</td>
+		<td>{{line['departure_time']}}</td>
+		<td>{{line['arrival_airport']}}</td>
+		<td>{{line['arrival_city']}}</td>
+		<td>{{line['arrival_time']}}</td>
+		<td>{{line['remainning_tickets']}}</td>
+		<td><form action="/customerpurchase" method="POST">
+			<input type="hidden" name="airline_name" value="{{line['airline_name']}}" /> 
+			<input type="hidden" name="flight_num" value={{line['flight_num']}} />
+			<input type="submit" value = Purchase>
+		</form></td>
+	</tr>
+{% endfor %}
+</table>
+
+<a href="/home">Go back</a>
+
+</body>
+
+</html>

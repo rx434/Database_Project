@@ -1,0 +1,57 @@
+<html>
+<head>
+</head>
+<body>
+<p>In the next 30 days, the upcoming flights for your airline {{airline_name}} are all here:</p>
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Flight Number</th>
+	<th>Departure Airport</th>
+	<th>Departure City</th>
+	<th>Departure Time</th>
+	<th>Arrival Airport</th>
+	<th>Arrival City</th>
+	<th>Arrival Time</th>
+
+{% for line in data %}
+	<tr>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['departure_airport']}}</td>
+		<td>{{line['departure_city']}}</td>
+		<td>{{line['departure_time']}}</td>
+		<td>{{line['arrival_airport']}}</td>
+		<td>{{line['arrival_city']}}</td>
+		<td>{{line['arrival_time']}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+<form action="/createflight" method="POST">
+	<p>email:</p><input type="text" name = "email"  required/> </br>
+	<p>name:</p><input type="text" name = "name" required/> </br>
+	<p>phone number:</p><input type="text" name = "phone_number"  required/> </br>
+	<p>date of birth:</p><input type="date" name = "date_of_birth"  required/> </br>
+	<p>password</p><input type="password" name = "password" required/></br>
+	<p>confirm your password:</p><input type="password" name = "confirm_password" required/></br>
+	<p>Address</p>
+	<p>building number:</p><input type="text" name = "building_number" required/> </br>
+	<p>street:</p><input type="text" name = "street" required/> </br>
+	<p>city:</p><input type="text" name = "city" required/> </br>
+	<p>state:</p><input type="text" name = "state" required/> </br>
+	<p>Passport information</p>
+	<p>passport number:</p><input type="text" name = "passport_number" required/> </br>
+	<p>passport expiration:</p><input type="date" name = "passport_expiration" required/> </br>
+	<p>passport country:</p><input type="text" name = "passport_country" required/> </br>
+	<input type="submit" value = Register />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<a href="/home/staff/update">Go back</a>
+</body>
+</html>

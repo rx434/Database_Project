@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form action="/home/agent/searchcommission" method="POST">
+	<p>From:</p><input type="date" name="from_date" required/> 
+	<p>To:</p><input type="date" name="to_date" required/>
+	<input type="submit" value = Search />
+</form>
+{% if error %}
+	<p class="error"><strong>Error:</strong> {{error}}</p>
+{% else %}
+	<p>From {{from_date}} to {{to_date}}, your commission information is all here:</p></br>
+{% endif %}
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Total Amount Commission</th>
+	<th>Average Commission</th>
+	<th>Total Number of Tickets</th>
+
+	<tr>
+		<td>{{total_amount_commission}}</td>
+		<td>{{average_commission}}</td>
+		<td>{{number_of_tickets}}</td>
+	</tr>
+</table>
+
+<a href="/home">Go back</a>
+
+</body>
+
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+<form action="/home/customer/searchflight" method="POST">
+	<p>From:</p><input type="date" name="from_date"/> 
+	<p>To:</p><input type="date" name="to_date"/>
+	<p>Source City:</p><input type="text" name="departure_city"/>
+	<p>Destination City:</p><input type="text" name="arrival_city"/>
+	<input type="submit" value = Search />
+</form>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Purchase Date</th>
+	<th>Airline Name</th>
+	<th>Flight Number</th>
+	<th>Departure Airport</th>
+	<th>Departure City</th>
+	<th>Departure Time</th>
+	<th>Arrival Airport</th>
+	<th>Arrival City</th>
+	<th>Arrival Time</th>
+	<th>Price</th>
+
+{% for line in flights %}
+	<tr>
+		<td>{{line['purchase_date']}}</td>
+		<td>{{line['airline_name']}}</td>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['departure_airport']}}</td>
+		<td>{{line['departure_city']}}</td>
+		<td>{{line['departure_time']}}</td>
+		<td>{{line['arrival_airport']}}</td>
+		<td>{{line['arrival_city']}}</td>
+		<td>{{line['arrival_time']}}</td>
+		<td>{{line['price']}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+
+<form action="/home/customer/searchstatus" method="POST">
+	<p>You can search the flights status here.</p>
+	<input type="text" name="airline" placeholder="airline" required/> 
+	<input type="text" name="flight_number" placeholder="flight number" required/>
+	<input type="submit" value = Search />
+</form>
+
+<style type="text/css">
+	table, th, td{
+		border: 1px solid black;
+	}
+</style>
+
+<table>
+	<th>Airline</th>
+	<th>Flight number</th>
+	<th>Status</th>
+
+{% for line in status %}
+	<tr>
+		<td>{{line['airline_name']}}</td>
+		<td>{{line['flight_num']}}</td>
+		<td>{{line['status']}}</td>
+	</tr>
+{% endfor %}
+</table>
+
+<a href="/home">Go back</a>
+
+</body>
+
+</html>

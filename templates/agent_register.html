@@ -1,0 +1,17 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/aregisterAuth" method="POST">
+	<p>email:</p><input type="text" name = "email"  required/> </br>
+	<p>booking agent id:</p><input type="text" name = "booking_agent_id" required/> </br>
+	<p>password:</p><input type="password" name = "password" required/></br>
+	<p>confirm your password:</p><input type="password" name = "confirm_password" required/></br>
+	<input type="submit" value = Register />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<a href="/register">Go back</a>
+</body>
+</html>

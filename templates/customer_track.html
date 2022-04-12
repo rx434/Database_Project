@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <script src="/static/echarts.min.js"></script>
+</head>
+<body>
+
+<form action="/home/customer/searchtrack" method="POST">
+	<p>From:</p><input type="date" name="from_date" required /> 
+	<p>To:</p><input type="date" name="to_date"  required/>
+	<input type="submit" value = Search />
+</form>
+{% if error %}
+	<p class="error"><strong>Error:</strong> {{error}}</p>
+{% else %}
+	<p>From {{from_date}} to {{to_date}}, you totally spend {{money}}.</p></br>
+	<p>From {{from_date}} to {{to_date}}, your month wise money spent is:</p></br>
+{% endif %}
+
+<div id="main" style="width: 600px;height:400px;"></div>
+	<script type="text/javascript">
+		var myChart = echarts.init(document.getElementById('main'));
+
+        // 指定图表的配置项和数据
+        var option = {
+            title: {
+                text: 'Month Wise Money Spent'
+            },
+            tooltip: {},
+            legend: {
+                data:['Money']
+            },
+            xAxis: {
+                data: {{x_data}}
+            },
+            yAxis: {},
+            series: [{
+                name: 'Month Wise Money Spent',
+                type: 'bar',
+                data: {{y_data}}
+            }]
+        };
+		myChart.setOption(option);
+	</script>
+	
+<a href="/home">Go back</a>
+
+</body>
+
+</html>

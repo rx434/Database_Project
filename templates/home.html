@@ -1,0 +1,35 @@
+<html>
+<head>
+</head>
+<body>
+<h1>Welcome {{role}} {{username}}</h1>
+{% if role == 'customer' %}
+	<a href="home/customer/view">View My Flight</a></br>
+	<a href="home/customer/searchandpurchase">Search and Purchase</a></br>
+	<a href="home/customer/track">Track My Spending</a></br>
+{% endif %}
+
+{% if role == 'booking_agent' %}
+	<a href="home/agent/view">View My Flight</a></br>
+	<a href="home/agent/searchandpurchase">Search and Purchase</a></br>
+	<a href="home/agent/commission">View My Commission</a></br>
+	<a href="home/agent/topcustomer">View Top Customers</a></br>
+{% endif %}
+
+{% if role == 'airline_staff' %}
+	<a href="home/staff/view">View My Flight</a></br>
+	<a href="home/staff/update">Update Information</a></br>
+	<a href="home/staff/search">Search Flight</a></br>
+	<a href="home/staff/viewagent">View All Booking Agent</a></br>
+	<a href="home/staff/viewcustomers">View Frequent Customers</a></br>
+	<a href="home/staff/reports">View Reports</a></br>
+	<a href="home/staff/comparison">Revenue Graph</a></br>
+	<a href="home/staff/destination">View Top Destinations</a></br>
+{% endif %}
+
+<a href="/logout">Logout</a>
+
+</body>
+
+
+</html>

@@ -1,0 +1,20 @@
+<html>
+<head>
+</head>
+<body>
+<form action="/sregisterAuth" method="POST">
+	<p>username:</p><input type="text" name = "username"  required/> </br>
+	<p>first name:</p><input type="text" name = "first_name" required/> </br>
+	<p>last name:</p><input type="text" name = "last_name" required/></br>
+	<p>date of birth:</p><input type="date" name = "date_of_birth" required/></br>
+	<p>airline name:</p><input type="text" name = "airline_name" required/></br>
+	<p>password:</p><input type="password" name = "password" required/></br>
+	<p>confirm your password:</p><input type="password" name = "confirm_password" required/></br>
+	<input type="submit" value = Register />
+	{% if error %}
+		<p class="error"><strong>Error:</strong> {{error}}</p>
+	{% endif %}
+</form>
+<a href="/register">Go back</a>
+</body>
+</html>
